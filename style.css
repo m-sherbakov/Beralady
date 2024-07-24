@@ -1,0 +1,144 @@
+/* Добавьте эти стили в ваш style.css файл */
+
+@keyframes rainbowText {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffff00; }
+    42% { color: #00ff00; }
+    57% { color: #0000ff; }
+    71% { color: #4b0082; }
+    85% { color: #8b00ff; }
+    100% { color: #ff0000; }
+}
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.animated-text, .animated-text-small, .additional-text, .wow-text {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 24px;
+    animation: rainbowText 2s infinite;
+}
+
+.animated-text-small_second {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 32px;
+    animation: rainbowText 2s infinite;
+}
+
+.animated-text-small {
+    font-size: 18px;
+}
+
+.animated-text-small_second {
+    font-size: 32px;
+}
+
+.gif-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.connect-wallet, .telegram-link {
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.mint-button{
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 64px;
+    margin: 20px 4px;
+    cursor: pointer;
+    border-radius: 24px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.mint-button:hover, .connect-wallet:hover, .telegram-link:hover {
+    background-color: #ff1493;
+}
+
+.connect-wallet {
+    font-size: 14px; /* Уменьшенный размер шрифта для кнопки подключения кошелька */
+}
+
+.minted-nft-container {
+    text-align: center;
+    margin: 20px auto;
+    animation: zoomInOut 2s infinite; /* Анимация увеличения и уменьшения */
+}
+
+.minted-nft-container img {
+    max-width: 200px; /* Уменьшенный размер изображения */
+    width: 100%;
+    height: auto;
+}
+
+.youtube-video {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.spacer {
+    height: 20px;
+}
+
+.header {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.animated-text-large {
+    font-size: 64px;
+    animation: rainbowText 0.5s infinite;
+}
+
+.animated-head {
+    font-size: 180px;
+    animation: rainbowText 0.5s infinite;
+}
+
+.mint-button {
+    font-size: 32px; /* Увеличенный размер шрифта для кнопки Mint */
+}
+
+.wow-text {
+    font-size: 24px; /* Стиль для текста Congrats! */
+}
