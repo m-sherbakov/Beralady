@@ -210,3 +210,30 @@ function updateWalletButton(address) {
     walletButton.textContent = address;
     walletButton.classList.add('connected-wallet');
 }
+
+document.addEventListener('mousemove', function(e) {
+    var bearEmoji = document.createElement('img');
+    bearEmoji.src = 'bera_face.png'; // Путь к вашему файлу с изображением
+    bearEmoji.style
+    bearEmoji.style.position = 'absolute';
+    bearEmoji.style.left = e.pageX + 'px';
+    bearEmoji.style.top = e.pageY + 'px';
+    bearEmoji.style.width = '30px'; // Размер изображения медведя
+    bearEmoji.style.height = '30px';
+    bearEmoji.style.pointerEvents = 'none';
+    bearEmoji.style.opacity = '1';
+    bearEmoji.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+    
+    document.body.appendChild(bearEmoji);
+
+    setTimeout(function() {
+        bearEmoji.style.opacity = '0';
+        bearEmoji.style.transform = 'scale(0.5)';
+    }, 50);
+
+    setTimeout(function() {
+        bearEmoji.remove();
+    }, 1000);
+});
+
+
