@@ -105,7 +105,9 @@ const imageURIs = [
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQPbQ3Nq4ALG1ek8NFqpCBDiZg3uBEHVQFUAqGdcCknaw",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdmSDajgoyL9X3jiu47HzMiSSS5dWYikYoTJXKYVkL2PQ",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmeKd9aTYvqkeGaqfzx7GmqEfUDoPxnHyo2LN8fr3skQG",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmNpcBRmDau51QafngtjxUB4aqTE4SQA6RCd883Rb9D6rY",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmNpcBRmDau51QafngtjxFt7QHEJsaZCayACBuD5vW5SSc",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQ6aGLgubvdK9h8GJoEuUNU95iEpHpK5iDgHBMF4m3Jiu",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/Qmdn7Ti6dLShzQd3xWaHLkXoHqrmAXpKHPAw8M4JYd6rY",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdiiChGAH82q6fmSh714NSFGyW4qR1vQRinbUSWcstkxC",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmXQopdjAojgoqrMeuNhtTu4pvh35Gwb4nKzGNUnR7MZmV",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmYTbHKjGiCBrCs4GVg9MVKg1dyQNCJdafS5hxhKpTvXDe",
@@ -120,6 +122,7 @@ async function connectWallet() {
             web3 = new Web3(window.ethereum);
             console.log('Connected account:', accounts[0]);
             updateWalletButton(accounts[0]);
+            await checkNetwork();
         } catch (error) {
             console.error('Error connecting to MetaMask', error);
         }
@@ -129,10 +132,27 @@ async function connectWallet() {
     }
 }
 
+async function checkNetwork() {
+    const chainId = await ethereum.request({ method: 'eth_chainId' });
+    console.log(`Current chainId: ${chainId}`);
+    const berachainTestnetChainId = parseInt('80084', 10);
+    if (parseInt(chainId, 16) !== berachainTestnetChainId) {
+        alert('Please switch your network to Berachain bArtio Testnet. Network: Berachain bArtio Testnet, Chain ID: 80084');
+    }
+}
+
 async function mintNFT() {
     console.log('Mint button clicked');
     if (!accounts || accounts.length === 0) {
         alert('Please connect your wallet first.');
+        return;
+    }
+
+    const chainId = await ethereum.request({ method: 'eth_chainId' });
+    console.log(`Current chainId: ${chainId}`);
+    const berachainTestnetChainId = parseInt('80084', 10);
+    if (parseInt(chainId, 16) !== berachainTestnetChainId) {
+        alert('Please switch your network to Berachain bArtio Testnet. Network: Berachain bArtio Testnet, Chain ID: 80084');
         return;
     }
 
