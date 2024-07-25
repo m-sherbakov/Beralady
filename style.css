@@ -20,6 +20,10 @@
     }
 }
 
+body {
+    cursor: url('point.png'), auto; /* Установите курсор для всего тела */
+}
+
 .animated-text, .animated-text-small, .additional-text, .wow-text {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 24px;
@@ -58,12 +62,11 @@
     display: inline-block;
     font-size: 16px;
     margin: 10px 2px;
-    cursor: pointer;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.mint-button{
+.mint-button {
     background-color: #ff69b4;
     color: #fff;
     border: none;
@@ -73,7 +76,6 @@
     display: inline-block;
     font-size: 64px;
     margin: 20px 4px;
-    cursor: pointer;
     border-radius: 24px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -142,3 +144,23 @@
 .wow-text {
     font-size: 24px; /* Стиль для текста Congrats! */
 }
+
+/* Установите курсор для всех кнопок */
+button, .connect-wallet, .telegram-link {
+    cursor: url('point.png'), auto;
+}
+
+/* Установите курсор для всех ссылок */
+a {
+    cursor: url('point.png'), auto;
+}
+/* Убедитесь, что этот стиль применим только для элементов, на которые вы хотите повлиять */
+body, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large {
+    cursor: url('point.png'), auto; /* Используем изображение медведя как курсор */
+}
+
+/* Стили для следа курсора */
+img[style*="bera_face.png"] {
+    transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
