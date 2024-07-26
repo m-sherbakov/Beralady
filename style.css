@@ -1,5 +1,3 @@
-/* Добавьте эти стили в ваш style.css файл */
-
 @keyframes rainbowText {
     0% { color: #ff0000; }
     14% { color: #ff7f00; }
@@ -38,10 +36,6 @@ body {
 
 .animated-text-small {
     font-size: 18px;
-}
-
-.animated-text-small_second {
-    font-size: 32px;
 }
 
 .gif-container img {
@@ -150,17 +144,42 @@ button, .connect-wallet, .telegram-link {
     cursor: url('point.png'), auto;
 }
 
-/* Установите курсор для всех ссылок */
-a {
-    cursor: url('point.png'), auto;
-}
-/* Убедитесь, что этот стиль применим только для элементов, на которые вы хотите повлиять */
 body, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large {
     cursor: url('point.png'), auto; /* Используем изображение медведя как курсор */
 }
 
 /* Стили для следа курсора */
 img[style*="bera_face.png"] {
-    transition: opacity 2s ease-out, transform 2s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+.quest1 {
+    color: #fff;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2px;
+    margin: 5px 1px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.falling-image {
+    position: fixed; /* Позиционирование fixed чтобы изображения падали по всему экрану */
+    top: -50px; /* Начало анимации за пределами экрана */
+    width: 30px;
+    height: 30px;
+    pointer-events: none; /* Чтобы изображения не мешали взаимодействию с контентом */
+    animation: fall linear infinite; /* Бесконечная анимация */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
