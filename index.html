@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beralady</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="beralady_0.png" type="image/png">
     <style>
         .image-container {
             position: relative;
         }
         .image-container img.arrow {
             position: absolute;
-            top: 125%; /* Adjust as needed */
+            top: 80%; /* Adjust as needed */
             left: 90%; /* Adjust as needed */
             width: 600px; /* Adjust as needed */
             transform: translate(-50%, -50%);
@@ -36,13 +37,18 @@
             <button class="mint-button" id="mintNFT">Mint 🐻⛓</button>
             <img src="image_red.png" alt="Arrow" class="arrow">
         </div>
-        <!-- Контейнер для отображения заминченного NFT -->
-        <div id="mintedNFTContainer" class="minted-nft-container" style="display: none;">
-            <img id="mintedNFTImage" src="" alt="Minted NFT">
-            <p class="animated-text wow-text">Congrats! 🐻⛓</p>
-            <button id="downloadNFTButton">Open in a new tab 🐻⛓</button>
+        <!-- Модальное окно для отображения заминченного NFT -->
+        <div id="nftModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="animated-text-small" id="mintedNFTMessage">Confirm the transaction...</p>
+                <img id="mintedNFTImage" src="" alt="Minted NFT Image" style="display: none;"/>
+                <div class="spacer"></div>
+                <button class="connect-wallet" id="downloadNFTButton">Open in new tab</button>
+            </div>
         </div>
         <div class="spacer"></div>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
