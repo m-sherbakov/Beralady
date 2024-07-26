@@ -106,8 +106,8 @@ const imageURIs = [
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdmSDajgoyL9X3jiu47HzMiSSS5dWYikYoTJXKYVkL2PQ",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmeKd9aTYvqkeGaqfzx7GmqEfUDoPxnHyo2LN8fr3skQG",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmNpcBRmDau51QafngtjxFt7QHEJsaZCayACBuD5vW5SSc",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQ6aGLgubvdK9h8GJoEuUNU95iEpHpK5iDgHBMF4m3Jiu",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/Qmdn7Ti6dLShzQd3xWaHLkXoHqrmAXpKHPAw8M4JYd6rY",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQ6aGLgubvdK9h8GJoEuUNU95iEpHpK5iDgHBMF4m3Jiu <----- неверный",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/Qmdn7Ti6dLShzQd3xWaHLkXoHqrmAXpKHPAw8M4JYd6rY <----- неверный",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdiiChGAH82q6fmSh714NSFGyW4qR1vQRinbUSWcstkxC",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmXQopdjAojgoqrMeuNhtTu4pvh35Gwb4nKzGNUnR7MZmV",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmYTbHKjGiCBrCs4GVg9MVKg1dyQNCJdafS5hxhKpTvXDe",
@@ -214,7 +214,6 @@ function updateWalletButton(address) {
 document.addEventListener('mousemove', function(e) {
     var bearEmoji = document.createElement('img');
     bearEmoji.src = 'bera_face.png'; // Путь к вашему файлу с изображением
-    bearEmoji.style
     bearEmoji.style.position = 'absolute';
     bearEmoji.style.left = e.pageX + 'px';
     bearEmoji.style.top = e.pageY + 'px';
@@ -236,4 +235,54 @@ document.addEventListener('mousemove', function(e) {
     }, 1000);
 });
 
+// Функция для создания и добавления падающих изображений
+function createFallingImages() {
+    const numberOfImages = 150; // Количество изображений, которые будут падать одновременно
+    const images = ['bera_face.png']; // Массив с изображениями
 
+    for (let i = 0; i < numberOfImages; i++) {
+        const img = document.createElement('img');
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.className = 'falling-image';
+        img.style.left = Math.random() * window.innerWidth + 'px';
+        img.style.animationDuration = Math.random() * 3 + 2 + 's'; // Случайная продолжительность анимации
+        img.style.animationDelay = Math.random() * 0.1 + 's'; // Случайная задержка анимации
+        document.body.appendChild(img);
+
+        // Удаление изображения после завершения анимации
+        img.addEventListener('animationend', () => {
+            document.body.removeChild(img);
+            createFallingImages(); // Повторное создание изображений для бесконечной анимации
+        });
+    }
+}
+
+// Запуск функции при загрузке страницы
+window.addEventListener('load', createFallingImages);
+
+function createRandomBerachainImage() {
+    const berachainImage = document.createElement('img');
+    berachainImage.src = 'berachain.png'; // Путь к вашему изображению berachain
+    berachainImage.style.position = 'absolute';
+    berachainImage.style.left = `${Math.random() * window.innerWidth}px`;
+    berachainImage.style.top = `${Math.random() * window.innerHeight}px`;
+    berachainImage.style.width = '100px'; // Размер изображения
+    berachainImage.style.height = '100px';
+    berachainImage.style.pointerEvents = 'none';
+    berachainImage.style.opacity = '1';
+    berachainImage.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+
+    document.body.appendChild(berachainImage);
+
+    setTimeout(function() {
+        berachainImage.style.opacity = '0';
+        berachainImage.style.transform = 'scale(0.5)';
+    }, 1000);
+
+    setTimeout(function() {
+        berachainImage.remove();
+    }, 2000);
+}
+
+// Запуск функции для создания изображения каждые 3 секунды
+setInterval(createRandomBerachainImage, 100);
