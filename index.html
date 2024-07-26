@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beralady</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .image-container {
+            position: relative;
+        }
+        .image-container img.arrow {
+            position: absolute;
+            top: 125%; /* Adjust as needed */
+            left: 90%; /* Adjust as needed */
+            width: 600px; /* Adjust as needed */
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -20,7 +32,10 @@
             <img src="beralady_gif.gif" alt="Animated GIF">
         </div>
         <div class="spacer"></div>
-        <button class="mint-button" id="mintNFT">Mint 🐻⛓</button>
+        <div class="image-container">
+            <button class="mint-button" id="mintNFT">Mint 🐻⛓</button>
+            <img src="image_red.png" alt="Arrow" class="arrow">
+        </div>
         <!-- Контейнер для отображения заминченного NFT -->
         <div id="mintedNFTContainer" class="minted-nft-container" style="display: none;">
             <img id="mintedNFTImage" src="" alt="Minted NFT">
@@ -28,6 +43,8 @@
             <button id="downloadNFTButton">Open in a new tab 🐻⛓</button>
         </div>
         <div class="spacer"></div>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
@@ -56,6 +73,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="main.js"></script>
-    <script src="cursor.js"></script> <!-- Добавьте эту строку -->
 </body>
 </html>
