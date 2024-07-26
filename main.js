@@ -104,10 +104,10 @@ const imageURIs = [
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmeN516ithKAwudXhDN5NL1LtuCVCeEPsGCauiE1psFWmH",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQPbQ3Nq4ALG1ek8NFqpCBDiZg3uBEHVQFUAqGdcCknaw",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdmSDajgoyL9X3jiu47HzMiSSS5dWYikYoTJXKYVkL2PQ",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmeKd9aTYvqkeGaqfzx7GmqEfUDoPxnHyo2LN8fr3skQG",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmNpcBRmDau51QafngtjxFt7QHEJsaZCayACBuD5vW5SSc",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQ6aGLgubvdK9h8GJoEuUNU95iEpHpK5iDgHBMF4m3Jiu <----- неверный",
-    "https://pink-real-crow-67.mypinata.cloud/ipfs/Qmdn7Ti6dLShzQd3xWaHLkXoHqrmAXpKHPAw8M4JYd6rY <----- неверный",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmNpcBRmDau51QafngtjxUB4aqTE4SQA6RCd883Rb9D6rY",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdiiChGAH82q6fmSh714NSFGyW4qR1vQRinbUSWcstkxC <-----13 неверный",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/QmQ6aGLgubvdK9h8GJoEuUNU95iEpHpK5iDgHBMF4m3Jiu <-----14 неверный",
+    "https://pink-real-crow-67.mypinata.cloud/ipfs/Qmdn7Ti6dLShzQd3xWaHLkXoHqrmAXpKHPAw8M4JYd6rY <-----15 неверный",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmdiiChGAH82q6fmSh714NSFGyW4qR1vQRinbUSWcstkxC",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmXQopdjAojgoqrMeuNhtTu4pvh35Gwb4nKzGNUnR7MZmV",
     "https://pink-real-crow-67.mypinata.cloud/ipfs/QmYTbHKjGiCBrCs4GVg9MVKg1dyQNCJdafS5hxhKpTvXDe",
@@ -149,10 +149,11 @@ async function mintNFT() {
     }
 
     const chainId = await ethereum.request({ method: 'eth_chainId' });
-    console.log(`Current chainId: ${chainId}`);
+    console.log(`Current chain id: ${chainId}`);
     const berachainTestnetChainId = parseInt('80084', 10);
     if (parseInt(chainId, 16) !== berachainTestnetChainId) {
         alert('Please switch your network to Berachain bArtio Testnet. Network: Berachain bArtio Testnet, Chain ID: 80084');
+        updateMintingModalMessage('Switch network');
         return;
     }
 
@@ -162,11 +163,12 @@ async function mintNFT() {
     const imageURI = imageURIs[randomIndex];
 
     try {
+        showMintingModal(); // Показать сообщение "Confirm the transaction..."
         const result = await contract.methods.createCollectible(tokenURI).send({ from: accounts[0] });
         console.log('Minting result:', result);
 
-        // Показать изображение и текст "Поздравляем!" сразу после успешной транзакции
-        showMintedNFT(imageURI); 
+        // Обновить сообщение и показать изображение после успешной транзакции
+        showMintedNFT(imageURI);
         alert('NFT Minted Successfully!');
     } catch (error) {
         console.error('Error minting NFT:', error);
@@ -174,23 +176,31 @@ async function mintNFT() {
     }
 }
 
-// Функция для отображения изображения заминченного NFT и текста "Поздравляем!"
+
+document.getElementById('mintNFT').addEventListener('click', function() {
+    // Пример URI изображения заминченного NFT
+    const imageURI = 'https://example.com/minted_nft.png';
+    showMintedNFT(imageURI);
+});
+
+function showMintingModal() {
+    const modal = document.getElementById('nftModal');
+    const img = document.getElementById('mintedNFTImage');
+    const message = document.getElementById('mintedNFTMessage');
+    img.style.display = 'none';
+    message.textContent = 'Confirm the transaction...';
+    modal.style.display = 'block';
+}
+
 function showMintedNFT(imageURI) {
-    const container = document.createElement('div');
-    container.className = 'minted-nft-container';
-
-    const img = document.createElement('img');
+    const modal = document.getElementById('nftModal');
+    const img = document.getElementById('mintedNFTImage');
+    const message = document.getElementById('mintedNFTMessage');
     img.src = imageURI;
-    img.alt = 'Minted NFT';
-    container.appendChild(img);
+    img.style.display = 'block';
+    message.textContent = 'Congrats!';
 
-    const wowText = document.createElement('p');
-    wowText.className = 'wow-text';
-    wowText.textContent = 'Congrats!';
-    container.appendChild(wowText);
-
-    const downloadButton = document.createElement('button');
-    downloadButton.textContent = 'Open in a new tab';
+    const downloadButton = document.getElementById('downloadNFTButton');
     downloadButton.onclick = () => {
         const newTab = window.open(imageURI, '_blank');
         if (newTab) {
@@ -199,9 +209,24 @@ function showMintedNFT(imageURI) {
             alert('Please allow popups for this website');
         }
     };
-    container.appendChild(downloadButton);
 
-    document.body.appendChild(container);
+    const span = document.getElementsByClassName('close')[0];
+    span.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    modal.style.display = 'block';
+}
+
+function updateMintingModalMessage(message) {
+    const modalMessage = document.getElementById('mintedNFTMessage');
+    modalMessage.textContent = message;
 }
 
 // Функция для обновления кнопки кошелька
