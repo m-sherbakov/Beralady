@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="beralady_0.png" type="image/png">
     <style>
+        body {
+            background-image: url('fon2.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
         .image-container {
             position: relative;
         }
@@ -34,17 +41,19 @@
         </div>
         <div class="spacer"></div>
         <div class="image-container">
-            <button class="mint-button" id="mintNFT">Mint 🐻⛓</button>
+            <button class="mint-button" id="mintNFT">Connect 🐻⛓ MetaMask 🐻⛓</button>
             <img src="image_red.png" alt="Arrow" class="arrow">
         </div>
         <!-- Модальное окно для отображения заминченного NFT -->
         <div id="nftModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p class="animated-text-small" id="mintedNFTMessage">Confirm the transaction...</p>
+                <p class="animated-text-small" id="mintedNFTMessage">Please switch to the Berachain bArtio Testnet</p>
                 <img id="mintedNFTImage" src="" alt="Minted NFT Image" style="display: none;"/>
                 <div class="spacer"></div>
-                <button class="connect-wallet" id="downloadNFTButton">Open in new tab</button>
+                <button class="connect-wallet" id="switchNetworkButton">Switch Network</button>
+                <div class="spacer"></div>
+                <button class="connect-wallet" id="downloadNFTButton" style="display: none;">Open in new tab</button>
             </div>
         </div>
         <div class="spacer"></div>
@@ -66,16 +75,217 @@
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
+        <p class="animated-text-small">ooga 🐻⛓ ooga 🐻⛓ booga 🐻⛓ booga 🐻⛓</p>
         <div class="spacer"></div>
         <p class="animated-text-large">⬇ Inspired 🐻⛓ by 🐻⛓ ⬇</p>
         <div class="youtube-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/JCuJKub0cGI?si=SxnST6uQ3pOqnzMC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <video width="560" height="315" controls autoplay loop muted>
+                <source src="gigabera.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-        <p class="animated-text-small additional-text">All 🐻⛓ coincidences 🐻⛓ are 🐻⛓ random 🐻⛓. If 🐻⛓ suddenly 🐻⛓ you 🐻⛓ are 🐻⛓ the 🐻⛓ author 🐻⛓ of 🐻⛓ something 🐻⛓ on 🐻⛓ the 🐻⛓ site 🐻⛓, contact 🐻⛓ us 🐻⛓ immediately 🐻⛓ and 🐻⛓ we 🐻⛓ will 🐻⛓ fix 🐻⛓ the 🐻⛓ error 🐻⛓ immediately 🐻⛓</p>
-    </div>
-    <div class="top-right">
-        <a href="https://t.me/beralady" target="_blank" class="telegram-link">telegram 🐻⛓</a>
-        <button class="connect-wallet" id="connectWallet">Connect 🐻⛓ MetaMask 🐻⛓</button>
+        <p class="animated-text-small additional-text">All 🐻⛓ coincidences 🐻⛓ are 🐻⛓ random 🐻⛓. If 🐻⛓ suddenly 🐻⛓ you 🐻⛓ are 🐻⛓ the 🐻⛓ author 🐻⛓ of 🐻⛓ something 🐻⛓ on 🐻⛓ theинтернете 🐻⛓ и 🐻⛓ это 🐻⛓ появилось 🐻⛓ здесь 🐻⛓, напишите 🐻⛓ нам 🐻⛓ и 🐻⛓ мы 🐻⛓ обязательно 🐻⛓ добавим 🐻⛓ ссылку 🐻⛓ на 🐻⛓ ваш 🐻⛓ источник 🐻⛓. Спонсор 🐻⛓ нашего 🐻⛓ проекта 🐻⛓ - 🐻⛓ ооога 🐻⛓ бууга 🐻⛓ бууга 🐻⛓.</p>
+        <div class="top-right">
+            <a href="https://x.com/beraladyNFT" target="_blank" class="x-link">X 🐻⛓</a>
+            <button class="connect-wallet" id="connectWallet">Connect 🐻⛓ MetaMask 🐻⛓</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="main.js"></script>
