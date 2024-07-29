@@ -46,7 +46,7 @@ body {
     margin: 0 auto;
 }
 
-.connect-wallet, .telegram-link {
+.connect-wallet, .x-link {
     background-color: #ff69b4;
     color: #fff;
     border: none;
@@ -74,7 +74,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.mint-button:hover, .connect-wallet:hover, .telegram-link:hover {
+.mint-button:hover, .connect-wallet:hover, .x-link:hover {
     background-color: #ff1493;
 }
 
@@ -140,7 +140,7 @@ body {
 }
 
 /* Установите курсор для всех кнопок */
-button, .connect-wallet, .telegram-link {
+button, .connect-wallet, .x-link {
     cursor: url('point.png'), auto;
 }
 
