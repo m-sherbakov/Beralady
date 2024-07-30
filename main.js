@@ -302,3 +302,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+// Открытие модального окна
+function openNotclickModal() {
+    document.getElementById('notclickModal').style.display = 'block';
+    makeDraggable(document.querySelector('#notclickModal .modal-content'));
+}
+
+// Закрытие модального окна
+function closeNotclickModal() {
+    document.getElementById('notclickModal').style.display = 'none';
+}
+
+// Уменьшение счетчика
+let counterValue = 0;
+function decrementCounter() {
+    counterValue--;
+    document.getElementById('counter').innerText = counterValue;
+}
+
+// Функция для перетаскивания элемента
+function makeDraggable(element) {
+    let offsetX, offsetY;
+    element.onmousedown = function (event) {
+        offsetX = event.clientX - element.getBoundingClientRect().left;
+        offsetY = event.clientY - element.getBoundingClientRect().top;
+
+        document.onmousemove = function (event) {
+            element.style.left = (event.clientX - offsetX) + 'px';
+            element.style.top = (event.clientY - offsetY) + 'px';
+        };
+
+        document.onmouseup = function () {
+            document.onmousemove = document.onmouseup = null;
+        };
+    };
+}
+
+// Открываем модальное окно при загрузке страницы
+window.onload = function() {
+    openNotclickModal(); // Открываем окно при загрузке
+};    
