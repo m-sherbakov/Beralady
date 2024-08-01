@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('connectWallet');
     const mintButton = document.getElementById('mintNFT');
     const switchNetworkButton = document.getElementById('switchNetworkButton');
+    const remainingText = document.getElementById('remainingNFTText'); // Элемент для отображения оставшихся NFT
     let web3;
     let userAccount = null;
-    let currentIndex = 0;
-    const contractAddress = '0x8490c1518eea61e17ae175aa5cd30c2d30f28301'; // адрес контракта
+    const contractAddress = '0x6993eb8ebe1434cd31b150f64177aa9fdd4bf9d5'; // адрес контракта
 
     // ABI вашего контракта
     const contractABI = [
-        // Здесь идет ваш ABI
         {
             "inputs": [],
             "name": "getNFTCount",
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "stateMutability": "nonpayable",
             "type": "function"
         }
-        // Добавьте остальные функции контракта по мере необходимости
     ];
 
     async function connectMetaMask() {
@@ -128,7 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function updateMintButton() {
         const nftCount = await getNFTCount();
-        mintButton.textContent = `Mint (${nftCount - currentIndex}/${nftCount})`;
+        mintButton.textContent = `Mint (${nftCount} NFTs available)`;
+        updateRemainingNFTText(nftCount); // Обновляем текст о количестве оставшихся NFT
     }
 
     async function getNFTCount() {
@@ -141,20 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Attempting to mint NFT...');
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         const account = accounts[0];
-        const nftCount = await getNFTCount();
-
-        if (currentIndex >= nftCount) {
+        const nftCount = BigInt(await getNFTCount()); // Get the NFT count as a BigInt
+    
+        if (nftCount === BigInt(0)) {
             alert('All NFTs have been minted.');
             return;
         }
-
+    
         try {
             const contract = new web3.eth.Contract(contractABI, contractAddress);
-            const tx = await contract.methods.issueNFT(account, currentIndex).send({ from: account });
-            showMintModal(currentIndex);
+            const indexToMint = nftCount - BigInt(1); // Calculate the index as a BigInt
+    
+            // Convert BigInt to regular number for passing to the contract method
+            const index = Number(indexToMint); 
+    
+            const tx = await contract.methods.issueNFT(account, index).send({ from: account });
+            showMintModal(index);
             console.log('Transaction sent:', tx);
-            currentIndex++;
-            mintButton.textContent = `Mint (${nftCount - currentIndex}/${nftCount})`;
+    
+            updateMintButton(); // Update button text and remaining NFT count
         } catch (error) {
             console.error('Error minting NFT:', error);
         }
@@ -187,27 +191,46 @@ document.addEventListener('DOMContentLoaded', () => {
             'https://pink-real-crow-67.mypinata.cloud/ipfs/QmYTbHKjGiCBrCs4GVg9MVKg1dyQNCJdafS5hxhKpTvXDe',
             'https://pink-real-crow-67.mypinata.cloud/ipfs/QmWpuaxjf8L659gBjN8EUAJStu2bs9f7Dzgg8JVGKeWah6',
             'https://pink-real-crow-67.mypinata.cloud/ipfs/QmbcrBnS6LXQz9oLDSFK6dgpxUvKb7UgtybEiKr5JPkBpg',
-  
         ];
-
-        message.textContent = 'Congrats!';
-        nftImage.src = imageUrls[index];
-        nftImage.style.display = 'block';
-        downloadButton.style.display = 'block';
-        downloadButton.onclick = () => {
-            window.open(imageUrls[index], '_blank');
-        };
-        modal.style.display = 'block';
-        mintButton.textContent = 'Mint';  // Restore Mint button text
-
-        // Убираем кнопку switchNetwork из модального окна
-        switchNetworkButton.style.display = 'none';
+    
+        if (message && nftImage && downloadButton) {
+            message.textContent = 'Congrats!';
+            nftImage.src = imageUrls[index] || '';  // Ensure index is valid
+            nftImage.style.display = 'block';
+            downloadButton.style.display = 'block';
+            downloadButton.onclick = () => {
+                window.open(imageUrls[index], '_blank');
+            };
+        }
+    
+        if (modal) {
+            modal.style.display = 'block';
+        }
+        
+        // Remove switchNetworkButton if it's not needed
+        const switchNetworkButton = document.getElementById('switchNetworkButton');
+        if (switchNetworkButton) {
+            switchNetworkButton.style.display = 'none';
+        }
+    
+        // If you have a mint button, reset its text
+        const mintButton = document.getElementById('mintButton');
+        if (mintButton) {
+            mintButton.textContent = 'Mint';
+        }
     }
-
+    
+    // Close modal logic
     document.querySelector('.close')?.addEventListener('click', () => {
         const modal = document.getElementById('nftModal');
-        modal.style.display = 'none';
-        switchNetworkButton.style.display = 'block';  // Восстанавливаем кнопку switchNetwork после закрытия модального окна
+        if (modal) {
+            modal.style.display = 'none';
+        }
+        
+        const switchNetworkButton = document.getElementById('switchNetworkButton');
+        if (switchNetworkButton) {
+            switchNetworkButton.style.display = 'block';  // Reset after modal closes
+        }
     });
 
     document.addEventListener('mousemove', function(e) {
@@ -303,43 +326,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-// Открытие модального окна
-function openNotclickModal() {
-    document.getElementById('notclickModal').style.display = 'block';
-    makeDraggable(document.querySelector('#notclickModal .modal-content'));
-}
-
-// Закрытие модального окна
-function closeNotclickModal() {
-    document.getElementById('notclickModal').style.display = 'none';
-}
-
-// Уменьшение счетчика
-let counterValue = 0;
-function decrementCounter() {
-    counterValue--;
-    document.getElementById('counter').innerText = counterValue;
-}
-
-// Функция для перетаскивания элемента
-function makeDraggable(element) {
-    let offsetX, offsetY;
-    element.onmousedown = function (event) {
-        offsetX = event.clientX - element.getBoundingClientRect().left;
-        offsetY = event.clientY - element.getBoundingClientRect().top;
-
-        document.onmousemove = function (event) {
-            element.style.left = (event.clientX - offsetX) + 'px';
-            element.style.top = (event.clientY - offsetY) + 'px';
-        };
-
-        document.onmouseup = function () {
-            document.onmousemove = document.onmouseup = null;
-        };
-    };
-}
-
-// Открываем модальное окно при загрузке страницы
-window.onload = function() {
-    openNotclickModal(); // Открываем окно при загрузке
-};    
+    function updateRemainingNFTText(remaining) {
+        const remainingNFTText = document.getElementById('remainingNFTText');
+        if (remainingNFTText) {
+            remainingNFTText.textContent = `${remaining} NFTs remaining`;
+        }
+    }
+    
+    connectButton.addEventListener('click', connectMetaMask);
