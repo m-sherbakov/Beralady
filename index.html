@@ -169,7 +169,21 @@
         <div class="spacer"></div>
         <div class="image-container">
             <button class="mint-button" id="mintNFT">Connect 🐻⛓ MetaMask 🐻⛓</button>
-            <img src="image_red.png" alt="Arrow" class="arrow">
+            <img src="image_red.png" alt="Arrow" class="arrow" id="arrowImage">
+            <script>
+              // Получаем элемент изображения
+              const arrowImage = document.getElementById('arrowImage');
+          
+              // Функция для смены изображения при наведении
+              arrowImage.addEventListener('mouseover', () => {
+                  arrowImage.src = 'image_red2.png';
+              });
+          
+              // Функция для возврата исходного изображения при снятии курсора
+              arrowImage.addEventListener('mouseout', () => {
+                  arrowImage.src = 'image_red.png';
+              });
+          </script>
         </div>
         <!-- Модальное окно для отображения заминченного NFT -->
         <div id="nftModal" class="modal">
