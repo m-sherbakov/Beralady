@@ -18,10 +18,6 @@
     }
 }
 
-body {
-    cursor: url('point.png'), auto; /* Установите курсор для всего тела */
-}
-
 .animated-text, .animated-text-small, .additional-text, .wow-text {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 24px;
@@ -141,11 +137,11 @@ body {
 
 /* Установите курсор для всех кнопок */
 button, .connect-wallet, .x-link {
-    cursor: url('point.png'), auto;
+    cursor: url(randomCursorChoice), auto; 
 }
 
 body, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large {
-    cursor: url('point.png'), auto; /* Используем изображение медведя как курсор */
+   cursor: url(randomCursorChoice), auto; /* Используем изображение медведя как курсор */
 }
 
 /* Стили для следа курсора */
@@ -243,19 +239,7 @@ img[style*="bera_face.png"] {
     margin: 0 auto;
 }
 /* Основные стили для модального окна */
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    width: 300px; /* Размер окна */
-    cursor: move; /* Курсор перетаскивания */
-}
+
 
 .modal-content img {
     cursor: pointer;
@@ -275,15 +259,36 @@ img[style*="bera_face.png"] {
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    position: fixed; /* Position the modal relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure the modal is above other content */
 }
+
+.modal-content {
+    width: 80%; /* Adjust width as needed */
+    max-width: 500px; /* Restrict maximum width */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Перетаскивание */
+.drag {
+    position: absolute;
+    cursor: move;
+}
+
+#mintButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the container takes up the required space */
+}
+
 
 /* Перетаскивание */
 .drag {
