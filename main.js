@@ -311,20 +311,34 @@ document.addEventListener('DOMContentLoaded', () => {
       switchNetworkButton.addEventListener('click', switchNetwork); // Добавляем слушатель для кнопки Switch Network
     });
   
-    // Добавляем новый обработчик кликов для изменения фона
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('button')) {
+// Добавляем новый обработчик кликов для изменения фона и курсора
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('button')) {
         const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF', '#FFFFFF'];
-        const randomChoice = Math.floor(Math.random() * (colors.length + 1));
-        if (randomChoice === colors.length) {
-          document.body.style.backgroundImage = 'url("fon2.png")';
-          document.body.style.backgroundSize = 'cover';
+        const cursors = ['point.png', 'finger.png', 'big.png'];
+
+        // Выбираем случайный цвет или фон
+        const randomColorChoice = Math.floor(Math.random() * (colors.length + 1));
+        if (randomColorChoice === colors.length) {
+            document.body.style.backgroundImage = 'url("fon2.png")';
+            document.body.style.backgroundSize = 'cover';
         } else {
-          document.body.style.backgroundImage = 'none';
-          document.body.style.backgroundColor = colors[randomChoice];
+            document.body.style.backgroundImage = 'none';
+            document.body.style.backgroundColor = colors[randomColorChoice];
         }
-      }
-    });
+
+        // Выбираем случайный курсор
+        const randomCursorChoice = cursors[Math.floor(Math.random() * cursors.length)];
+        const cursorUrl = `url('${randomCursorChoice}'), auto`;
+
+        // Применяем курсор к body и всем указанным элементам
+        document.body.style.cursor = cursorUrl;
+        document.querySelectorAll('button, .connect-wallet, .x-link, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large, .modal-content img')
+            .forEach(element => {
+                element.style.cursor = cursorUrl;
+            });
+    }
+});
 
     function updateRemainingNFTText(remaining) {
         const remainingNFTText = document.getElementById('remainingNFTText');
