@@ -9,13 +9,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('connectWallet');
     const mintButton = document.getElementById('mintNFT');
     const switchNetworkButton = document.getElementById('switchNetworkButton');
-    const remainingText = document.getElementById('remainingNFTText'); // Элемент для отображения оставшихся NFT
+    const remainingText = document.getElementById('remainingNFTText');
     let web3;
     let userAccount = null;
-    const contractAddress = '0x6993eb8ebe1434cd31b150f64177aa9fdd4bf9d5'; // адрес контракта
+    const contractAddress = '0x656a7ca1ecf19006e97bf21445f3868a7fc52424';
 
-    // ABI вашего контракта
     const contractABI = [
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "tokenAddress",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                }
+            ],
+            "name": "NFTIssued",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                }
+            ],
+            "name": "NFTNotIssued",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amountInWei",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                }
+            ],
+            "name": "issueNFT",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
         {
             "inputs": [],
             "name": "getNFTCount",
@@ -29,24 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "stateMutability": "view",
             "type": "function"
         },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "index",
-                    "type": "uint256"
-                }
-            ],
-            "name": "issueNFT",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }
     ];
 
     async function connectMetaMask() {
@@ -127,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function updateMintButton() {
         const nftCount = await getNFTCount();
         mintButton.textContent = `Mint (${nftCount} NFTs available)`;
-        updateRemainingNFTText(nftCount); // Обновляем текст о количестве оставшихся NFT
+        updateRemainingNFTText(nftCount);
     }
 
     async function getNFTCount() {
@@ -137,30 +185,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function mintNFT() {
-        console.log('Attempting to mint NFT...');
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-        const account = accounts[0];
-        const nftCount = BigInt(await getNFTCount()); // Get the NFT count as a BigInt
-    
-        if (nftCount === BigInt(0)) {
-            alert('All NFTs have been minted.');
-            return;
-        }
-    
         try {
-            const contract = new web3.eth.Contract(contractABI, contractAddress);
-            const indexToMint = nftCount - BigInt(1); // Calculate the index as a BigInt
+            const accounts = await ethereum.request({ method: 'eth_accounts' });
+            const account = accounts[0];
     
-            // Convert BigInt to regular number for passing to the contract method
-            const index = Number(indexToMint); 
+            // Get the honey amount from the slider and convert it to a BigInt in Wei
+            const honeyAmount = BigInt(document.getElementById('honey-slider').value) * BigInt(1e18);
     
-            const tx = await contract.methods.issueNFT(account, index).send({ from: account });
-            showMintModal(index);
-            console.log('Transaction sent:', tx);
+            // ERC20 approve ABI
+            const erc20ApproveABI = [
+                {
+                    "constant": false,
+                    "inputs": [
+                        { "name": "_spender", "type": "address" },
+                        { "name": "_value", "type": "uint256" }
+                    ],
+                    "name": "approve",
+                    "outputs": [{ "name": "", "type": "bool" }],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ];
+    
+            // Initialize the approve contract
+            const approveContractAddress = '0x0E4aaF1351de4c0264C5c7056Ef3777b41BD8e03';
+            const approveContract = new web3.eth.Contract(erc20ApproveABI, approveContractAddress);
+    
+            // Approve the token transfer
+            await approveContract.methods.approve(contractAddress, honeyAmount.toString()).send({ from: account });
+            console.log('Approve transaction successful');
+    
+            // Initialize the NFT contract
+            const nftContract = new web3.eth.Contract(contractABI, contractAddress);
+    
+            // Get the number of available NFTs
+            const nftCount = Number(await nftContract.methods.getNFTCount().call());
+    
+            if (nftCount === 0) {
+                alert('No NFTs available to mint');
+                return;
+            }
+    
+            // Generate a random index within the valid range (0 to nftCount - 1)
+            const randomIndex = Math.floor(Math.random() * nftCount).toString();
+    
+            // Call the issueNFT function with account, honeyAmount, and randomIndex
+            const tx = await nftContract.methods.issueNFT(account, honeyAmount.toString(), randomIndex).send({ from: account });
+    
+            console.log('Transaction events:', tx.events);
+    
+            // Handle transaction events
+            if (tx.events && tx.events.NFTIssued) {
+                showMintModal(randomIndex); // Show modal with the NFT's image
+                alert('Congratulations! You won an NFT!');
+            } else if (tx.events && tx.events.NFTNotIssued) {
+                alert('Sorry, you did not win.');
+            } else {
+                alert('Unknown result, please check the transaction details.');
+            }
     
             updateMintButton(); // Update button text and remaining NFT count
+    
         } catch (error) {
             console.error('Error minting NFT:', error);
+            alert('Transaction failed: ' + error.message);
         }
     }
 
@@ -195,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         if (message && nftImage && downloadButton) {
             message.textContent = 'Congrats!';
-            nftImage.src = imageUrls[index] || '';  // Ensure index is valid
+            nftImage.src = imageUrls[index] || '';
             nftImage.style.display = 'block';
             downloadButton.style.display = 'block';
             downloadButton.onclick = () => {
@@ -206,20 +295,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) {
             modal.style.display = 'block';
         }
-        
-        // Remove switchNetworkButton if it's not needed
+    
         const switchNetworkButton = document.getElementById('switchNetworkButton');
         if (switchNetworkButton) {
             switchNetworkButton.style.display = 'none';
         }
     
-        // If you have a mint button, reset its text
         const mintButton = document.getElementById('mintButton');
         if (mintButton) {
             mintButton.textContent = 'Mint';
         }
     }
-    
     // Close modal logic
     document.querySelector('.close')?.addEventListener('click', () => {
         const modal = document.getElementById('nftModal');
@@ -256,6 +342,16 @@ document.addEventListener('DOMContentLoaded', () => {
           bearEmoji.remove();
         }, 1000);
       });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const slider = document.getElementById('honey-slider');
+        const output = document.getElementById('honey-output');
+    
+        slider.addEventListener('input', () => {
+            output.value = this.value + " 🍯";
+        });
+    });
 
     function createFallingImages() {
         const numberOfImages = 300; // Number of images to fall at the same time
@@ -315,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', (event) => {
     if (!event.target.closest('button')) {
         const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF', '#FFFFFF'];
-        const cursors = ['point.png', 'finger.png', 'big.png'];
+        const cursors = ['point.png', 'finger.png', 'big.png', 'ooga.png'];
 
         // Выбираем случайный цвет или фон
         const randomColorChoice = Math.floor(Math.random() * (colors.length + 1));
@@ -333,7 +429,7 @@ document.addEventListener('click', (event) => {
 
         // Применяем курсор к body и всем указанным элементам
         document.body.style.cursor = cursorUrl;
-        document.querySelectorAll('button, .connect-wallet, .x-link, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large, .modal-content img')
+        document.querySelectorAll('button, .connect-wallet, #honey-output, .honey-slider, .slider-container, .x-link, .header, .container, .mint-button, .animated-text, .animated-text-small, .animated-text-small_second, .animated-text-large, .close-button, #counter, .modal-content img')
             .forEach(element => {
                 element.style.cursor = cursorUrl;
             });
